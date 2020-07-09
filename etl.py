@@ -120,9 +120,9 @@ def process_log_data(spark, input_data, output_data):
     songs_df.createOrReplaceTempView("songs_table")
     songplays_table = spark.sql(
         """  SELECT monotonically_increasing_id() AS songplay_id, 
-                    log_timestamp AS start_time, 
-                    month(log_datetime) AS month,
-                    year(log_datetime) AS year, 
+                    logs.log_timestamp AS start_time, 
+                    month(logs.log_datetime) AS month,
+                    year(logs.log_datetime) AS year, 
                     logs.userId AS user_id, 
                     logs.level AS level, 
                     songs.song_id AS song_id, 
